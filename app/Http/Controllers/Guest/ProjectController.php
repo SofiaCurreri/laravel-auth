@@ -8,6 +8,6 @@ use App\Models\Project;
 class ProjectController extends Controller
 {
     public function index() {
-        return view('index');
+        return view('welcome');
     }
 }

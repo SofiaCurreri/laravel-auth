@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\Guest\ProjectController as GuestProjectController;
+use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,15 +16,10 @@ use App\Http\Controllers\ProjectController;
 |
 */
 
-Route::get('/', [ProjectController::class, 'index']);
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',  [GuestProjectController::class, 'index']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware('auth')->name('dashboard');
+Route::get('/dashboard', [AdminProjectController::class, 'index'])->middleware('auth')->name('dashboard');
 
 Route::middleware('auth')
     ->prefix('profile') //tutti gli url hanno il prefisso /profile
