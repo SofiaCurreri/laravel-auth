@@ -19,7 +19,7 @@ use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
 
 Route::get('/',  [GuestProjectController::class, 'index']);
 
-Route::get('/dashboard', [AdminProjectController::class, 'index'])->middleware('auth')->name('dashboard');
+Route::get('/home', [AdminProjectController::class, 'index'])->middleware('auth')->name('home');
 
 Route::middleware('auth')
     ->prefix('profile') //tutti gli url hanno il prefisso /profile
