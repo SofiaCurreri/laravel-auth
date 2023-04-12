@@ -11,7 +11,7 @@
                 <div class="card-header">{{ __('User Dashboard') }}</div>
 
                 <div class="card-body">
-                  Benvenuto nel mio portfolio
+                  Benvenuto nel mio portfolio, Guest
                 </div>
             </div>
         </div>

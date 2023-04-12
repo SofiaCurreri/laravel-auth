@@ -9,6 +9,6 @@ use App\Models\Project;
 class ProjectController extends Controller
 {
     public function index() {
-        return view('welcome');
+        return view('guest.home');
     }
 }
