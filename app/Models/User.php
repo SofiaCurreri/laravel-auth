@@ -41,4 +41,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+
+    //E' un MUTATOR (lo stiamo creando noi ma laravel capisce essere un mutator). Ogni volta che avrò una password verrà eseguito questo metodo che la hasha
+    protected function setPasswordAttribute($value) {
+        $this->attributes['password'] = bcrypt($value);
+    }
 }
