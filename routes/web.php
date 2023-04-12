@@ -22,6 +22,15 @@ Route::get('/',  [GuestProjectController::class, 'index']);
 Route::get('/home', [AdminProjectController::class, 'index'])->middleware('auth')->name('home');
 
 Route::middleware('auth')
+    ->prefix('/admin')
+    ->group(
+        function() {
+            Route::resource('projects', AdminProjectController::class);
+            // Route::resource('projects', GuestProjectController::class);
+        }
+    );
+
+Route::middleware('auth')
     ->prefix('profile') //tutti gli url hanno il prefisso /profile
     ->name('profile.') //tutti i nomi delle rotte hanno il prefisso profile. (profile.edit, profile.update, profile.destroy)
     ->group(function () {

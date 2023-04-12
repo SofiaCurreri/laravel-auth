@@ -15,7 +15,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return view('admin.home');
+        $projects = Project::all();
+        return view('admin.projects.index', compact('projects'));
     }
 
     /**
@@ -42,10 +43,10 @@ class ProjectController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Project $project
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Project $project)
     {
         //
     }
@@ -53,10 +54,10 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Project $project
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Project $project)
     {
         //
     }
