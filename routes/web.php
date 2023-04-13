@@ -27,8 +27,8 @@ Route::middleware('auth')
     ->name('admin.')
     ->group(
         function() {
-            Route::resource('projects', ProjectController::class);
-            // Route::resource('projects', GuestProjectController::class);
+            Route::resource('projects', ProjectController::class)
+                ->parameters(['projects' => 'project:slug']); //così per tutta la risorsa si usa slug al posto dell' id (va bene solo se slug è unico)
         }
     );
 
