@@ -1,9 +1,10 @@
 @extends('layouts.app')
 
-@section('content')
-    <section class="container">
+@section('title', 'Projects')
 
-        <h1 class="my-4"> Projects </h1>
+@section('content')
+    <section>
+
         <table class="table table-striped">
             <thead>
                 <tr>
