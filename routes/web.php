@@ -20,7 +20,7 @@ use App\Http\Controllers\Admin\ProjectController;
 
 Route::get('/',  [GuestHomeController::class, 'index']);
 
-Route::get('/home', [AdminHomeController::class, 'index'])->middleware('auth')->name('home');
+Route::get('/home', [ProjectController::class, 'index'])->middleware('auth')->name('home');
 
 Route::middleware('auth')
     ->prefix('/admin')
