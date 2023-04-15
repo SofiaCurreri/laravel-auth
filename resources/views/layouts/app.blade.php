@@ -23,13 +23,17 @@
 </head>
 
 <body>
-    <div>
+    <div class="d-flex">
 
         @include('layouts.partials.navbar')
 
-        <main class="container">
-            <h1 class="my-4"> @yield('title') </h1>
-            @yield('content')
+        <main>
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-start my-5">
+                    <h1 class="my-4"> @yield('title') </h1>
+                </div>
+                @yield('content')
+            </div>
         </main>
     </div>
 </body>

@@ -3,11 +3,17 @@
 @section('title', $project->title)
 
 @section('content')
-    <section class="clearfix">
-        <a href="{{route('admin.projects.index')}}" class="btn btn-primary float-end">Torna alla lista</a>
-
-        <h2 class="text-muted text-secondary my-5">{{$project->slug}}</h2>
-        <img src="{{$project->image}}" alt="" width="300px" class="float-start me-4 mb-1">
-        <p>{{$project->text}}</p>
-    </section>
+<section class="card clearfix">
+    <div class="card-body d-flex">
+        <p class="">{{$project->text}}</p>
+        <figure class="float-end ms-5 mb-3">
+            <img src="{{$project->image}}" alt="" width="300px">
+            <figcaption class="text-muted text-secondary m-0">
+                {{$project->slug}}
+            </figcaption>
+        </figure>
+    </div>
+    
+</section>
+<a href="{{route('admin.projects.index')}}" class="btn btn-primary float-start my-5">Torna alla lista</a>
 @endsection
