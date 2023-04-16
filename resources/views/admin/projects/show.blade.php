@@ -4,7 +4,7 @@
 
 @section('content')
 <section class="card clearfix">
-    <div class="card-body d-flex">
+    <div class="card-body d-flex justify-content-between">
         <p class="">{{$project->text}}</p>
         <figure class="float-end ms-5 mb-3">
             <img src="{{$project->image}}" alt="" width="300px">

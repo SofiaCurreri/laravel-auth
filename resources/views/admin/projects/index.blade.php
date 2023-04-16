@@ -27,10 +27,14 @@
                             <th scope="row">{{$project->id}}</th>
                             <td>{{$project->title}}</td>
                             <td>{{$project->getAbstract()}}</td>
-                            <td>
+                            <td class="d-flex justify-content-between">
                                 <a href="{{route('admin.projects.show', $project)}}">
                                     <i class="bi bi-eye"></i>
-                                </a>    
+                                </a>   
+                                
+                                <a href="{{route('admin.projects.edit', $project)}}">
+                                    <i class="bi bi-pencil"></i>
+                                </a> 
                             </td>               
                         </tr>
                     @empty
