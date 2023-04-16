@@ -55,22 +55,27 @@
 
 @section('modals')
     @foreach ($projects as $project)
-        <div class="modal fade" id="delete-project-modal-{{$project->id}}" tabindex="-1" aria-labelledby="delete-project-modal-{{$project->id}}-label" aria-hidden="true">
-            <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h1 class="modal-title fs-5" id="delete-project-modal-{{$project->id}}-label">Modal title</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal modal-lg fade" id="delete-project-modal-{{$project->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="delete-project-modal-{{$project->id}}-label" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="delete-project-modal-{{$project->id}}-label">Delete project</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Sei sicuro di voler eliminare il progetto "{{$project->title}}"? <br>
+                        L' operazione non è reversibile.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                        <form method="POST" action="{{route('admin.projects.destroy', $project)}}">
+                            @method('delete')
+                            @csrf
+                    
+                            <button type="button" class="btn btn-danger">Elimina</button>
+                        </form>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    Sei sicuro di voler eliminare il progetto "{{$project->title}}"? <br>
-                    L' operazione non è reversibile.
-                </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
-                <button type="button" class="btn btn-danger">Elimina</button>
-                </div>
-            </div>
             </div>
         </div>
     @endforeach
