@@ -44,13 +44,16 @@
                         <div class="col-md-2 text-end">
                             <label for="image" class="form-label">Immagine</label>
                         </div>
-                        <div class="col-md-10">
+                        <div class="col-md-8">
                             <input type="url" name="image" id="image" class="form-control @error('image') is-invalid @enderror" value="{{old('image', $project->image)}}">
                             @error('image')
                             <div class="invalid-feedback">
                                 {{$message}}
                             </div>                                    
                             @enderror
+                        </div>
+                        <div class="col-2">
+                            <img src="{{old('image', $project->image)}}" class="img-fluid" alt="">
                         </div>
                     </div>
                         

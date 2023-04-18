@@ -2,6 +2,11 @@
 
 @section('title', $project->title)
 
+@section('actions')
+    <a href="{{route('admin.projects.index')}}" class="btn btn-primary float-end mx-2">Torna alla lista</a>
+    <a href="{{route('admin.projects.edit', $project)}}" class="btn btn-primary float-end mx-2">Modifica progetto</a>   
+@endsection
+
 @section('content')
     <section class="card clearfix">
         <div class="card-body d-flex justify-content-between">
@@ -15,5 +20,4 @@
         </div>
         
     </section>
-    <a href="{{route('admin.projects.index')}}" class="btn btn-primary float-start my-5">Torna alla lista</a>
 @endsection

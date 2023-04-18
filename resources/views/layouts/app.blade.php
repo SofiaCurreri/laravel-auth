@@ -32,7 +32,9 @@
                 <div class="d-flex justify-content-between align-items-center my-5">
                     <h1 class="my-4"> @yield('title') </h1>
 
-                    @yield('actions')
+                    <div>
+                        @yield('actions')
+                    </div>
                 </div>
 
                 {{-- flash session --}}
