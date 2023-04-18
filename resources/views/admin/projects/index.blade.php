@@ -9,6 +9,7 @@
 @endsection
 
 @section('content')
+
     <section class="card">
         <div class="card-body">
 

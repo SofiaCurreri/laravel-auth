@@ -47,6 +47,24 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+
+        //validation
+        $request->validate([
+            'title' => 'required|string|max:100',
+            'text' => 'required|string',
+            'image' => 'nullable|url',
+        ], 
+        [
+            'title.required' => 'Il titolo è obbligatorio',
+            'title.string' => 'Il titolo deve essere una stringa',
+            'title.max' => 'Il titolo può avere 100 caratteri al massimo',
+
+            'text.required' => 'Il contenuto è obbligatorio',
+            'text.string' => 'Il contenuto deve essere una stringa',
+
+            'image.url' => 'L\' immagine deve essere un link valido',
+        ]);
+        
         $project = new Project;
         $project->fill($request->all());
         $project->slug = Project::generateSlug($project->title);

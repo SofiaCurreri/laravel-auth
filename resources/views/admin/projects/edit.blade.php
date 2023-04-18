@@ -9,6 +9,9 @@
 @endsection
 
 @section('content')
+
+    @include('layouts.partials.errors')
+
     <section class="card">
         <div class="card-body">
             <form method="POST" action="{{route('admin.projects.update', $project)}}">

@@ -9,6 +9,9 @@
 @endsection
 
 @section('content')
+
+    @include('layouts.partials.errors')
+
     <section class="card">
         <div class="card-body">
 
@@ -21,7 +24,12 @@
                         <label for="title" class="form-label">Titolo</label>
                     </div>
                     <div class="col-md-10">
-                        <input type="text" name="title" id="title" class="form-control">           
+                        <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror"> 
+                        @error('title')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>                                    
+                        @enderror
                     </div>
                 </div> 
                     
@@ -30,7 +38,12 @@
                         <label for="image" class="form-label">Immagine</label>
                     </div>
                     <div class="col-md-10">
-                        <input type="url" name="image" id="image" class="form-control">
+                        <input type="url" name="image" id="image" class="form-control @error('image') is-invalid @enderror">
+                        @error('image')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>                                    
+                        @enderror
                     </div>
                 </div>
                     
@@ -39,7 +52,12 @@
                         <label for="text" class="form-label">Testo</label>
                     </div>
                     <div class="col-md-10">
-                        <textarea name="text" id="text" class="form-control" rows="5"></textarea>
+                        <textarea name="text" id="text" class="form-control @error('text') is-invalid @enderror" rows="5"></textarea>
+                        @error('text')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>                                    
+                        @enderror
                     </div>
                 </div>
 
