@@ -12,12 +12,20 @@ class ProjectController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-         $projects = Project::orderBy('updated_at', 'DESC')->paginate(10);
-         return view('admin.projects.index', compact('projects')); //percorso cartelle
+         //riga sotto = "Se nell' url c' è richiesta di ordinare per qualcosa, ordina per quello, altrimenti di default usa updated_at"
+         $sort = (!empty($sort_request = $request->get('sort'))) ? $sort_request : "updated_at";
+
+         //se nella richiesta ho un qualche tipo di ordine usa quello, altrimenti ordina in modo discendente
+         $order = (!empty($order_request = $request->get('order'))) ? $order_request : "DESC";
+
+         //con withQueryString() vengono mantenuti i parametri nell' url, quindi il sort continua a produrre effetto anche se cambi pagina usando tasti paginazione
+         $projects = Project::orderBy($sort, $order)->paginate(10)->withQueryString();
+         return view('admin.projects.index', compact('projects', 'sort', 'order')); //percorso cartelle
 
     }
 

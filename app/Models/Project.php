@@ -16,6 +16,7 @@ class Project extends Model
         return substr($this->text, 0, $max) . "...";
     }
 
+    //funzone per generare slug unico
     public static function generateSlug($title) {
         //genera slug
         $possible_slug = Str::of($title)->slug('-');

@@ -15,9 +15,50 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                      <th scope="col">Id</th>
-                      <th scope="col">Titolo</th>
-                      <th scope="col">Abstract</th>
+                      <th scope="col">
+                        <a href="{{route('admin.projects.index')}}?sort=id&order={{$sort == 'id' && $order != 'DESC' ? 'DESC' : 'ASC' }}">
+                            Id
+                            @if ($sort == 'id')
+                                <i class="bi bi-arrow-down d-inline-block @if ($order == 'DESC') rotate-180 @endif"></i>
+                            @endif
+                        </a> 
+                      </th>
+                      
+                      <th scope="col">
+                        <a href="{{route('admin.projects.index')}}? sort=title&order={{$sort == 'title' && $order != 'DESC' ? 'DESC' : 'ASC' }}">
+                            Titolo
+                            @if ($sort == 'title')
+                                <i class="bi bi-arrow-down d-inline-block @if ($order == 'DESC') rotate-180 @endif"></i>
+                            @endif
+                        </a>
+                      </th>
+                      
+                      <th scope="col">
+                        <a href="{{route('admin.projects.index')}}? sort=text&order={{$sort == 'text' && $order != 'DESC' ? 'DESC' : 'ASC' }}">
+                            Abstract
+                            @if ($sort == 'text')
+                                <i class="bi bi-arrow-down d-inline-block @if ($order == 'DESC') rotate-180 @endif"></i>
+                            @endif
+                        </a>
+                      </th>
+
+                      <th scope="col">
+                        <a href="{{route('admin.projects.index')}}? sort=updated_at&order={{$sort == 'updated_at' && $order != 'DESC' ? 'DESC' : 'ASC' }}">
+                            Ultima modifica
+                            @if ($sort == 'updated_at')
+                                <i class="bi bi-arrow-down d-inline-block @if ($order == 'DESC') rotate-180 @endif"></i>
+                            @endif
+                        </a>
+                      </th>
+
+                      <th scope="col">
+                        <a href="{{route('admin.projects.index')}}? sort=created_at&order={{$sort == 'created_at' && $order != 'DESC' ? 'DESC' : 'ASC' }}">
+                            Creazione
+                            @if ($sort == 'created_at')
+                                <i class="bi bi-arrow-down d-inline-block @if ($order == 'DESC') rotate-180 @endif"></i>
+                            @endif
+                        </a>
+                      </th>
                       <th scope="col"></th>
                     </tr>
                   </thead>
@@ -26,7 +67,9 @@
                         <tr>
                             <th scope="row">{{$project->id}}</th>
                             <td>{{$project->title}}</td>
-                            <td>{{$project->getAbstract()}}</td>
+                            <td>{{$project->getAbstract(20)}}</td>
+                            <td>{{$project->updated_at}}</td>
+                            <td>{{$project->created_at}}</td>
                             <td class="d-flex justify-content-end">
                                 <a href="{{route('admin.projects.show', $project)}}">
                                     <i class="bi bi-eye mx-2"></i>
