@@ -52,7 +52,8 @@ class ProjectController extends Controller
         $project->slug = Project::generateSlug($project->title);
         $project->save();
 
-        return to_route('admin.projects.show',$project);
+        return to_route('admin.projects.show',$project)
+            ->with('message_content', 'Post creato con successo');
     }
 
     /**
@@ -91,7 +92,8 @@ class ProjectController extends Controller
         $project->save();
 
         //return to_route = redirect
-        return to_route('admin.projects.show', $project);
+        return to_route('admin.projects.show', $project)
+            ->with('message_content', 'Post modificato con successo');
     }
 
     /**
@@ -102,7 +104,10 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        $id_project = $project->id;
         $project->delete();
-        return to_route('admin.projects.index');
+        return to_route('admin.projects.index')
+            ->with('message_type', "danger")
+            ->with('message_content', "Post $id_project eliminato con successo"); // <= per la felsh session
     }
 }

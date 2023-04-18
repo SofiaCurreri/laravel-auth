@@ -12,7 +12,8 @@
     <section class="card">
         <div class="card-body">
 
-            <form method="POST" action="{{route('admin.projects.store')}}" class="row">
+            {{-- con enctype="multipart/form-data" il form ha il permesso di inviare file --}}
+            <form method="POST" action="{{route('admin.projects.store')}}" enctype="multipart/form-data" class="row">
                 @csrf
 
                 <div class="row mb-3">
@@ -29,7 +30,7 @@
                         <label for="image" class="form-label">Immagine</label>
                     </div>
                     <div class="col-md-10">
-                        <input type="text" name="image" id="image" class="form-control">
+                        <input type="url" name="image" id="image" class="form-control">
                     </div>
                 </div>
                     
