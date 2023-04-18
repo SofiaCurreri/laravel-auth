@@ -16,7 +16,7 @@ class Project extends Model
         return substr($this->text, 0, $max) . "...";
     }
 
-    //funzone per generare slug unico
+    //funzione per generare slug unico
     public static function generateSlug($title) {
         //genera slug
         $possible_slug = Str::of($title)->slug('-');
@@ -36,5 +36,14 @@ class Project extends Model
         }
 
         return $possible_slug;
+    }
+
+    //funzione per modificare formato data in cui si presenta l' updated_at
+    protected function getUpdatedAtAttribute($value) {
+        return date('d/m/Y H:i', strtotime($value));
+    }
+
+    protected function getCreatedAtAttribute($value) {
+        return date('d/m/Y H:i', strtotime($value));
     }
 }

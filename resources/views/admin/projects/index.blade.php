@@ -41,6 +41,15 @@
                             @endif
                         </a>
                       </th>
+                     
+                      <th scope="col">
+                        <a href="{{route('admin.projects.index')}}? sort=created_at&order={{$sort == 'created_at' && $order != 'DESC' ? 'DESC' : 'ASC' }}">
+                            Creazione
+                            @if ($sort == 'created_at')
+                                <i class="bi bi-arrow-down d-inline-block @if ($order == 'DESC') rotate-180 @endif"></i>
+                            @endif
+                        </a>
+                      </th>
 
                       <th scope="col">
                         <a href="{{route('admin.projects.index')}}? sort=updated_at&order={{$sort == 'updated_at' && $order != 'DESC' ? 'DESC' : 'ASC' }}">
@@ -51,14 +60,6 @@
                         </a>
                       </th>
 
-                      <th scope="col">
-                        <a href="{{route('admin.projects.index')}}? sort=created_at&order={{$sort == 'created_at' && $order != 'DESC' ? 'DESC' : 'ASC' }}">
-                            Creazione
-                            @if ($sort == 'created_at')
-                                <i class="bi bi-arrow-down d-inline-block @if ($order == 'DESC') rotate-180 @endif"></i>
-                            @endif
-                        </a>
-                      </th>
                       <th scope="col"></th>
                     </tr>
                   </thead>
@@ -68,8 +69,8 @@
                             <th scope="row">{{$project->id}}</th>
                             <td>{{$project->title}}</td>
                             <td>{{$project->getAbstract(20)}}</td>
-                            <td>{{$project->updated_at}}</td>
                             <td>{{$project->created_at}}</td>
+                            <td>{{$project->updated_at}}</td>
                             <td class="d-flex justify-content-end">
                                 <a href="{{route('admin.projects.show', $project)}}">
                                     <i class="bi bi-eye mx-2"></i>
