@@ -24,7 +24,7 @@
                         <label for="title" class="form-label">Titolo</label>
                     </div>
                     <div class="col-md-10">
-                        <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror"> 
+                        <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" value="{{old('title')}}"> 
                         @error('title')
                         <div class="invalid-feedback">
                             {{$message}}
@@ -38,7 +38,7 @@
                         <label for="image" class="form-label">Immagine</label>
                     </div>
                     <div class="col-md-10">
-                        <input type="url" name="image" id="image" class="form-control @error('image') is-invalid @enderror">
+                        <input type="url" name="image" id="image" class="form-control @error('image') is-invalid @enderror" value="{{old('image')}}">
                         @error('image')
                         <div class="invalid-feedback">
                             {{$message}}
@@ -52,7 +52,9 @@
                         <label for="text" class="form-label">Testo</label>
                     </div>
                     <div class="col-md-10">
-                        <textarea name="text" id="text" class="form-control @error('text') is-invalid @enderror" rows="5"></textarea>
+                        <textarea name="text" id="text" class="form-control @error('text') is-invalid @enderror" rows="5">
+                            {{old('text')}}
+                        </textarea>
                         @error('text')
                         <div class="invalid-feedback">
                             {{$message}}
