@@ -27,17 +27,17 @@
                             <th scope="row">{{$project->id}}</th>
                             <td>{{$project->title}}</td>
                             <td>{{$project->getAbstract()}}</td>
-                            <td class="d-flex justify-content-between">
+                            <td class="d-flex justify-content-end">
                                 <a href="{{route('admin.projects.show', $project)}}">
-                                    <i class="bi bi-eye"></i>
+                                    <i class="bi bi-eye mx-2"></i>
                                 </a>   
                                 
                                 <a href="{{route('admin.projects.edit', $project)}}">
-                                    <i class="bi bi-pencil"></i>
+                                    <i class="bi bi-pencil mx-2"></i>
                                 </a> 
 
                                 <a href="{{route('admin.projects.destroy', $project)}}" data-bs-toggle = "modal" data-bs-target = "#delete-project-modal-{{$project->id}}">
-                                    <i class="bi bi-trash text-danger"></i>
+                                    <i class="bi bi-trash text-danger mx-2"></i>
                                 </a> 
                             </td>               
                         </tr>
@@ -72,7 +72,7 @@
                             @method('delete')
                             @csrf
                     
-                            <button type="button" class="btn btn-danger">Elimina</button>
+                            <button type="submit" class="btn btn-danger">Elimina</button>
                         </form>
                     </div>
                 </div>
