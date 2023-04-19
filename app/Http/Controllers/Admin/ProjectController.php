@@ -135,11 +135,22 @@ class ProjectController extends Controller
             'image.mimes' => 'Le estensioni accettate per l\' immagine sono jpg, png, jpeg',
         ]);
 
-        $data = $request->all();
+        $data = $request->all(); //per non scrivere $request->all() per intero ogni volta
+
+        if(Arr::exists($data, 'image')) { //$data = array mentre 'image' = chiave che stai cercando
+
+            //se progetto ha gia un' imagine, nel modificarlo, cancellala, per sostituirla con la nuova
+            if($project->image) Storage::delete($project->image); 
+
+            //Metti in public/storage/uploads/projects l' immagine che riceviamo
+            $path = Storage::put('uploads/projects', $data['image']); 
+
+            //METODO 2, nella chiave 'image' mettici il $path che hai appena salvato alla riga sopra
+            $data['image'] = $path; 
+        }
         
-        $project->fill($request->all());
+        $project->fill($data);
         $project->slug = Project::generateSlug($project->title);
-        $project->update($data);
         $project->save();
 
         //return to_route = redirect
