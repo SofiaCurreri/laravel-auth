@@ -13,7 +13,7 @@
             <p class="">{{$project->text}}</p>
             <figure class="float-end ms-5 mb-3">
                 {{-- asset() parte di default da public --}}
-                <img src="{{$project->image}}" alt="{{$project->slug}}" width="300px">
+                <img src="{{$project->getImageUri()}}" alt="{{$project->slug}}" width="300px">
                 <figcaption class="text-muted text-secondary m-0">
                     {{$project->slug}}
                 </figcaption>

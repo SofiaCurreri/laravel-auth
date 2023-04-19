@@ -53,7 +53,7 @@
                             @enderror
                         </div>
                         <div class="col-2">
-                            <img src="{{old('image', $project->image)}}" class="img-fluid" alt="">
+                            <img src="{{$project->getImageUri()}}" class="img-fluid" alt="">
                         </div>
                     </div>
                         
