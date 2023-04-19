@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -66,10 +68,18 @@ class ProjectController extends Controller
             'image.image' => 'Il file caricato deve essere un\'immagine',
             'image.mimes' => 'Le estensioni accettate per l\' immagine sono jpg, png, jpeg',
         ]);
+
+        $data = $request->all(); //per non scrivere $request->all() per intero ogni volta
+
+        if(Arr::exists($data, 'image')) { //$data = array mentre 'image' = chiave che stai cercando
+            $path = Storage::put('uploads/projects', $data['image']); //Metti in public/storage/uploads/projects l' immagine che riceviamo
+            $data['image'] = $path; //METODO 2, nella chiave 'image' mettici il $path che hai appena salvato alla riga sopra
+        }
         
         $project = new Project;
-        $project->fill($request->all());
+        $project->fill($data);
         $project->slug = Project::generateSlug($project->title);
+        // $project->image = $path; METODO 1
         $project->save();
 
         return to_route('admin.projects.show',$project)

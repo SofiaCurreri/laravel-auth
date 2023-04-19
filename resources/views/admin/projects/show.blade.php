@@ -12,7 +12,8 @@
         <div class="card-body d-flex justify-content-between">
             <p class="">{{$project->text}}</p>
             <figure class="float-end ms-5 mb-3">
-                <img src="{{$project->image}}" alt="" width="300px">
+                {{-- asset() parte di default da public --}}
+                <img src="{{asset('storage/' . $project->image)}}" alt="{{$project->slug}}" width="300px">
                 <figcaption class="text-muted text-secondary m-0">
                     {{$project->slug}}
                 </figcaption>
