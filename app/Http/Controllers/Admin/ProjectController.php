@@ -53,7 +53,7 @@ class ProjectController extends Controller
         $request->validate([
             'title' => 'required|string|max:100',
             'text' => 'required|string',
-            'image' => 'nullable|url',
+            'image' => 'nullable|image|mimes:jpg,png,jpeg',
         ], 
         [
             'title.required' => 'Il titolo è obbligatorio',
@@ -63,7 +63,8 @@ class ProjectController extends Controller
             'text.required' => 'Il contenuto è obbligatorio',
             'text.string' => 'Il contenuto deve essere una stringa',
 
-            'image.url' => 'L\' immagine deve essere un link valido',
+            'image.image' => 'Il file caricato deve essere un\'immagine',
+            'image.mimes' => 'Le estensioni accettate per l\' immagine sono jpg, png, jpeg',
         ]);
         
         $project = new Project;
@@ -110,7 +111,7 @@ class ProjectController extends Controller
         $request->validate([
             'title' => 'required|string|max:100',
             'text' => 'required|string',
-            'image' => 'nullable|url',
+            'image' => 'nullable|image|mimes:jpg,png,jpeg',
         ], 
         [
             'title.required' => 'Il titolo è obbligatorio',
@@ -120,7 +121,8 @@ class ProjectController extends Controller
             'text.required' => 'Il contenuto è obbligatorio',
             'text.string' => 'Il contenuto deve essere una stringa',
 
-            'image.url' => 'L\' immagine deve essere un link valido',
+            'image.image' => 'Il file caricato deve essere un\'immagine',
+            'image.mimes' => 'Le estensioni accettate per l\' immagine sono jpg, png, jpeg',
         ]);
 
         $data = $request->all();
