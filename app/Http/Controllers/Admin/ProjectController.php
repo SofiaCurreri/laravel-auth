@@ -122,6 +122,7 @@ class ProjectController extends Controller
             'title' => 'required|string|max:100',
             'text' => 'required|string',
             'image' => 'nullable|image|mimes:jpg,png,jpeg',
+            'is_published' => 'boolean',
         ], 
         [
             'title.required' => 'Il titolo è obbligatorio',
@@ -136,6 +137,8 @@ class ProjectController extends Controller
         ]);
 
         $data = $request->all(); //per non scrivere $request->all() per intero ogni volta
+        $data["slug"] = Project::generateSlug($data["title"]);
+        $data["is_published"] = $request->has("is_published") ? 1 : 0;
 
         if(Arr::exists($data, 'image')) { //$data = array mentre 'image' = chiave che stai cercando
 
@@ -149,9 +152,8 @@ class ProjectController extends Controller
             $data['image'] = $path; 
         }
         
-        $project->fill($data);
-        $project->slug = Project::generateSlug($project->title);
-        $project->save();
+        //update() = fill() + save()
+        $project->update($data);
 
         //return to_route = redirect
         return to_route('admin.projects.show', $project)
