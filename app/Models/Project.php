@@ -12,6 +12,7 @@ class Project extends Model
 
     protected $fillable = ["title", "image", "text"];
 
+    //funzione per generare un abstract del text
     public function getAbstract($max=50) {
         return substr($this->text, 0, $max) . "...";
     }
@@ -38,12 +39,18 @@ class Project extends Model
         return $possible_slug;
     }
 
-    //funzione per modificare formato data in cui si presenta l' updated_at
+    //funzione(mutator) per modificare formato data in cui si presenta l' updated_at
     protected function getUpdatedAtAttribute($value) {
         return date('d/m/Y H:i', strtotime($value));
     }
 
+    //funzione(mutator) per modificare formato data in cui si presenta il created_at
     protected function getCreatedAtAttribute($value) {
         return date('d/m/Y H:i', strtotime($value));
+    }
+
+    //funzione(mutator) per mostrare placeholder dell' immagine qualora essa non ci sia
+    protected function getImageAttribute($value) {
+       return $value ? asset('storage/' . $value) : 'https://www.frosinonecalcio.com/wp-content/uploads/2021/09/default-placeholder.png';
     }
 }
