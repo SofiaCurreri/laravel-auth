@@ -53,7 +53,7 @@
                             @enderror
                         </div>
                         <div class="col-2">
-                            <img src="{{$project->getImageUri()}}" class="img-fluid" alt="">
+                            <img src="{{$project->getImageUri()}}" class="img-fluid" alt="" id="image-preview">
                         </div>
                     </div>
                         
@@ -81,4 +81,31 @@
                 </form>          
         </div>
     </section>
+@endsection
+
+
+{{-- Per anteprima immagini --}}
+@section('scripts')
+    <script>
+        const imageInputEl = document.getElementById('image');
+        const imagePreviewEl = document.getElementById('image-preview');
+
+        //cosi se non carico alcuna immagine nuova vedo quella che c' era prima
+        const placeholder = imagePreviewEl.src;
+
+        imageInputEl.addEventListener('change', () => {
+            if(imageInputEl.files && imageInputEl.files[0]) {
+                
+                //classe che si trova gia dentro javascript e che permette di effettuare operazioni sui file selezionati
+                const reader = new FileReader();
+
+                //readAsDataURL() metodo che encoderà un' immagine direttamente dentro tag src
+                reader.readAsDataURL(imageInputEl.files[0]);
+
+                reader.onload = e => {
+                    imagePreviewEl.src = e.target.result;
+                }
+            } else  imagePreviewEl.src = placeholder;
+        })
+    </script>
 @endsection
