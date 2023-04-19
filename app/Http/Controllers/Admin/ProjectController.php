@@ -139,7 +139,7 @@ class ProjectController extends Controller
 
         if(Arr::exists($data, 'image')) { //$data = array mentre 'image' = chiave che stai cercando
 
-            //se progetto ha gia un' imagine, nel modificarlo, cancellala, per sostituirla con la nuova
+            //se progetto ha gia un' immagine, nel modificarlo, cancellala, per sostituirla con la nuova, MA SOLO SE ne è stata inviata una nuova
             if($project->image) Storage::delete($project->image); 
 
             //Metti in public/storage/uploads/projects l' immagine che riceviamo
