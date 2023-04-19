@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 class HomeController extends Controller
 {
     public function index() {
-        return view('guest.home');
+        $recent_projects = Project::where('is_published', 1)->orderBy('updated_at', 'DESC')->limit(8)->get();
+        return view('guest.home', compact('recent_projects'));
     }
 }

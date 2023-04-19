@@ -8,10 +8,12 @@
     <div class="row justify-content-center">
         <div class="col">
             <div class="card">
-                <div class="card-header">{{ __('User Dashboard') }}</div>
+                <div class="card-header">
+                    <h2>Progetti più recenti</h2>
+                </div>
 
                 <div class="card-body">
-                  Benvenuto nel mio portfolio, Guest
+                  @dump($recent_projects)
                 </div>
             </div>
         </div>
