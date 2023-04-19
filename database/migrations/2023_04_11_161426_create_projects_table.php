@@ -17,6 +17,7 @@ return new class extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->string('title',100);
+            $table->boolean('is_published')->default(0);
             $table->string('slug',100)->unique();
             $table->text('image')->nullable();
             $table->text('text');

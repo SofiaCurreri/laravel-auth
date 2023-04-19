@@ -10,7 +10,7 @@ class Project extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["title", "image", "text"];
+    protected $fillable = ["title", "image", "text", "is_published"];
 
     //funzione per generare un abstract del text
     public function getAbstract($max=50) {
