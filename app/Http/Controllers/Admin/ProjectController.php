@@ -167,6 +167,10 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         $id_project = $project->id;
+
+        //quando cancelliamo progetto dobbiamo cancellare anche relativa immagine
+        if($project->image) Storage::delete($project->image);
+        
         $project->delete();
         return to_route('admin.projects.index')
             ->with('message_type', "danger")
