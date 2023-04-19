@@ -18,7 +18,7 @@
             {{-- Form unico per edit e create --}}
             {{-- Se project ha già un id sarà una modifica (if(...)), se non ce l' ha è una creazione (else...) (per distinguere i due casi) --}}
             @if($project->id)
-                <form method="POST" action="{{route('admin.projects.update', $project)}}" enctype="multipart/form-data">
+                <form method="POST" action="{{route('admin.projects.update', $project)}}" enctype="multipart/form-data" class="row">
                     @method('PUT')
             @else 
             {{-- con enctype="multipart/form-data" il form ha il permesso di inviare file --}}
