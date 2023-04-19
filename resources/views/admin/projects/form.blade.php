@@ -18,7 +18,7 @@
             {{-- Form unico per edit e create --}}
             {{-- Se project ha già un id sarà una modifica (if(...)), se non ce l' ha è una creazione (else...) (per distinguere i due casi) --}}
             @if($project->id)
-                <form method="POST" action="{{route('admin.projects.update', $project)}}">
+                <form method="POST" action="{{route('admin.projects.update', $project)}}" enctype="multipart/form-data">
                     @method('PUT')
             @else 
             {{-- con enctype="multipart/form-data" il form ha il permesso di inviare file --}}
@@ -45,7 +45,7 @@
                             <label for="image" class="form-label">Immagine</label>
                         </div>
                         <div class="col-md-8">
-                            <input type="url" name="image" id="image" class="form-control @error('image') is-invalid @enderror" value="{{old('image', $project->image)}}">
+                            <input type="file" name="image" id="image" class="form-control @error('image') is-invalid @enderror">
                             @error('image')
                             <div class="invalid-feedback">
                                 {{$message}}
