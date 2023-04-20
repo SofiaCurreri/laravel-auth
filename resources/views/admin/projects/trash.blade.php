@@ -86,7 +86,7 @@
                                 </a> 
 
                                 <a href="#" data-bs-toggle = "modal" data-bs-target = "#restore-project-modal-{{$project->id}}">
-                                    R
+                                    <i class="bi bi-arrow-90deg-left text-success mx-2"></i>
                                 </a>
                             </td>     
                         </tr>
