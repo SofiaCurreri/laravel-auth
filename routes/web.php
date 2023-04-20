@@ -26,13 +26,14 @@ Route::middleware('auth')
     ->prefix('/admin')
     ->name('admin.')
     ->group(
-        function() {
-            Route::resource('projects', ProjectController::class)
-                ->parameters(['projects' => 'project:slug']); //così per tutta la risorsa si usa slug al posto dell' id (va bene solo se slug è unico). Per risorsa projects usi slug di project(singolare)
-
+        function() {       
+            //L'ordine delle Route qui è importante   
             Route::get('/projects/trash', [ProjectController::class, 'trash'])->name('projects.trash');
             Route::put('/projects/{project}/restore', [ProjectController::class, 'restore'])->name('projects.restore');
             Route::delete('/projects/{project}/force-delete', [ProjectController::class, 'forceDelete'])->name('projects.force-delete');
+            
+            Route::resource('projects', ProjectController::class)
+                ->parameters(['projects' => 'project:slug']); //così per tutta la risorsa si usa slug al posto dell' id (va bene solo se slug è unico). Per risorsa projects usi slug di project(singolare)
         }
     );
 
