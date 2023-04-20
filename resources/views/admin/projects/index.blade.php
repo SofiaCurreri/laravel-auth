@@ -6,6 +6,10 @@
     <a href="{{route('admin.projects.create')}}" class="btn btn-primary">
         Crea nuovo progetto
     </a>
+
+    <a href="{{route('admin.projects.trash')}}" class="btn btn-secondary">
+        Cestino
+    </a>
 @endsection
 
 @section('content')

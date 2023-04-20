@@ -178,4 +178,17 @@ class ProjectController extends Controller
             ->with('message_type', "danger")
             ->with('message_content', "Post $id_project eliminato con successo"); // <= per la felsh session
     }
+
+
+    /**
+     * Display a listing of the trashed resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function trash() {
+        $project = Project::onlyTrashed()->get();
+        dd($project);
+        return view('admin.projects.trash', 'project' );
+    }
 }
