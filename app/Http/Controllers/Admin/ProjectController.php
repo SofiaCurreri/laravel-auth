@@ -171,12 +171,12 @@ class ProjectController extends Controller
         $id_project = $project->id;
 
         //quando cancelliamo progetto dobbiamo cancellare anche relativa immagine
-        if($project->image) Storage::delete($project->image);
+        // if($project->image) Storage::delete($project->image);
         
         $project->delete();
         return to_route('admin.projects.index')
             ->with('message_type', "danger")
-            ->with('message_content', "Post $id_project eliminato con successo"); // <= per la felsh session
+            ->with('message_content', "Post $id_project spostato nel cestino"); // <= per la flesh session
     }
 
 
@@ -186,9 +186,32 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function trash() {
-        $project = Project::onlyTrashed()->get();
-        dd($project);
-        return view('admin.projects.trash', 'project' );
+    public function trash(Request $request) {
+        $sort = (!empty($sort_request = $request->get('sort'))) ? $sort_request : "updated_at";
+        $order = (!empty($order_request = $request->get('order'))) ? $order_request : "DESC";
+        $projects = Project::onlyTrashed()->orderBy($sort, $order)->paginate(10)->withQueryString();
+ 
+        return view('admin.projects.trash', compact('projects', 'sort', 'order') );
+    }
+
+     /**
+     * Force delete the specified resource from storage.
+     * Force delete elimina riga da database.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function forceDelete(Int $id)
+    {
+        $project = Project::where('id', $id)->onlyTrashed()->first();
+
+        //quando cancelliamo progetto dobbiamo cancellare anche relativa immagine
+        if($project->image) Storage::delete($project->image);
+        
+        $project->forceDelete();
+        
+        return to_route('admin.projects.index')
+            ->with('message_type', "danger")
+            ->with('message_content', "Post $id eliminato definitivamente"); // <= per la flesh session
     }
 }
