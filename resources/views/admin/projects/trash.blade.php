@@ -84,6 +84,10 @@
                                 <a href="#" data-bs-toggle = "modal" data-bs-target = "#delete-project-modal-{{$project->id}}">
                                     <i class="bi bi-trash text-danger mx-2"></i>
                                 </a> 
+
+                                <a href="#" data-bs-toggle = "modal" data-bs-target = "#restore-project-modal-{{$project->id}}">
+                                    R
+                                </a>
                             </td>     
                         </tr>
                     @empty
@@ -100,6 +104,8 @@
  
 @section('modals')
     @foreach ($projects as $project)
+    
+        {{-- modale per delete --}}
         <div class="modal modal-lg fade" id="delete-project-modal-{{$project->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="delete-project-modal-{{$project->id}}-label" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -118,6 +124,31 @@
                             @csrf
                     
                             <button type="submit" class="btn btn-danger">Elimina</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        {{-- modale per restore --}}
+        <div class="modal modal-lg fade" id="restore-project-modal-{{$project->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="restore-project-modal-{{$project->id}}-label" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="restore-project-modal-{{$project->id}}-label">Restore project</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Sei sicuro di voler ripristinare il progetto "{{$project->title}}"? 
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                        <form method="POST" action="{{route('admin.projects.restore', $project)}}">
+                            @method('put')
+                            @csrf
+                    
+                            <button type="submit" class="btn btn-primary">Ripristina</button>
                         </form>
                     </div>
                 </div>

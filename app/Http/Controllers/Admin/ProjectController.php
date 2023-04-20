@@ -210,8 +210,26 @@ class ProjectController extends Controller
         
         $project->forceDelete();
         
-        return to_route('admin.projects.index')
+        return to_route('admin.projects.trash')
             ->with('message_type', "danger")
             ->with('message_content', "Post $id eliminato definitivamente"); // <= per la flesh session
+    }
+
+    
+    /**
+     * Restore the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function restore(Int $id)
+    {
+        $project = Project::where('id', $id)->onlyTrashed()->first();
+
+        //setta NULL la data di cancellazione
+        $project->restore();
+        
+        return to_route('admin.projects.index')
+            ->with('message_content', "Post $id ripristinato correttamente"); // <= per la flesh session
     }
 }
